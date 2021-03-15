@@ -31,17 +31,20 @@ class Resource extends BaseResource<ResourceModel> {
     };
 
     private async checkResponse(response: Response, logger: LoggerProxy, uid?: string): Promise<any> {
-        if (response.status === 404) {
-            throw new exceptions.NotFound(this.typeName, uid);
-        } else if (![200, 201].includes(response.status)) {
-            throw new exceptions.InternalFailure(
-                `crudcrud.com error ${response.status} ${response.statusText}`,
-                HandlerErrorCode.InternalFailure,
-            );
-        }
-        const data = await response.text() || '{}';
-        logger.log(`HTTP response ${data}`);
-        return JSON.parse(data);
+        //if (response.status === 404) {
+          //  throw new exceptions.NotFound(this.typeName, uid);
+        //} else if (![200, 201].includes(response.status)) {
+          //  throw new exceptions.InternalFailure(
+            //    `crudcrud.com error ${response.status} ${response.statusText}`,
+             //   HandlerErrorCode.InternalFailure,
+            //);
+        //}
+        //const data = await response.text() || '{}';
+        // const data = {
+        //   "id": "4eb2db78"
+        // }
+	//logger.log(`HTTP response ${data}`);
+        return JSON.parse(null);
     }
 
     @handlerEvent(Action.Create)
@@ -59,13 +62,13 @@ class Resource extends BaseResource<ResourceModel> {
         const progress = ProgressEvent.progress<ProgressEvent<ResourceModel>>(model);
         const body = model.toJSON();
         logger.log('UPDATE body', body);
-        const response: Response = await fetch(Resource.API_ENDPOINT, {
-            method: 'POST',
-            headers: Resource.DEFAULT_HEADERS,
-            body: JSON.stringify(body),
-        });
-        const jsonData: Unicorn = await this.checkResponse(response, logger);
-        progress.resourceModel.id = jsonData._id;
+        //const response: Response = await fetch(Resource.API_ENDPOINT, {
+          //  method: 'POST',
+          //  headers: Resource.DEFAULT_HEADERS,
+          //  body: JSON.stringify(body),
+        //});
+        //const jsonData: Unicorn = await this.checkResponse(null, logger);
+        progress.resourceModel.id = "4eb2db78";
         progress.status = OperationStatus.Success;
         logger.log('CREATE progress', progress);
         return progress;
