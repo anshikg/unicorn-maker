@@ -1,0 +1,15 @@
+{
+  "desiredResourceState": {
+    "Id": "4eb2db78",
+    "Color": "001",
+    "Name": "001"
+}
+,
+  "previousResourceState": {
+    "Id": "4eb2db78",
+    "Color": "000",
+    "Name": "000"
+}
+,
+  "logicalResourceIdentifier": "MyResource"
+}
